@@ -52,29 +52,29 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   addFriend(req, res) {
-    Thought.findOneAndUpdate(
-      { _id: req.params.thoughtId },
-      { $addToSet: { reactions: req.body } },
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $addToSet: { friends: req.params.friendsId } },
       { runValidators: true, new: true }
     )
-      .then((thought) =>
-        !thought
-          ? res.status(404).json({ message: 'No thought with this id!' })
-          : res.json(thought)
+      .then((user) =>
+        !user
+          ? res.status(404).json({ message: 'No user with this id!' })
+          : res.json(user)
       )
       .catch((err) => res.status(500).json(err));
   },
   
   removeFriend(req, res) {
-    Thought.findOneAndUpdate(
-      { _id: req.params.thoughtId },
-      { $pull: { reactions: { reactionId: req.params.reactionId } } },
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $pull: {friends: req.params.friendsId } },
       { runValidators: true, new: true }
     )
-      .then((thought) =>
-        !thought
-          ? res.status(404).json({ message: 'No thought with this id!' })
-          : res.json(thought)
+      .then((user) =>
+        !user
+          ? res.status(404).json({ message: 'No user with this id!' })
+          : res.json(user)
       )
       .catch((err) => res.status(500).json(err));
   },
