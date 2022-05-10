@@ -20,15 +20,15 @@ Fork from https://github.com/dwarrick91/Social_Network_API
 ## Usage
 - install dependencies 
 - run node index.js
--       or
+ or
 - run nodemon index.js (to keep server running)
 - open insomnia to test routes
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+
+    
+    ![Social Network API Gif](./Assets/images/Social-Network.gif)
+    
 
 ## Credits
 -nodejs
