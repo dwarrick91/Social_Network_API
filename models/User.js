@@ -1,4 +1,4 @@
-const { Schema, model, mongoose } = require('mongoose');
+const { Schema, model,} = require('mongoose');
 
 // Schema to create User model
 const userSchema = new Schema(
@@ -17,7 +17,7 @@ const userSchema = new Schema(
     friends: [
       {
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: 'User'
       }
     
     ]
@@ -25,6 +25,7 @@ const userSchema = new Schema(
   {
     toJSON: {
       virtuals: true,
+      getters: true
     },
     id: false,
   }

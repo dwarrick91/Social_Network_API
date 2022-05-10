@@ -13,8 +13,10 @@ module.exports = {
   // Get a single user
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
-    .populate('thoughts')
-    .populate('friends')
+    .populate({
+      path: 'thoughts',
+      model: Thought
+    })
       .select('-__v')
       .then((user) =>
         !user
@@ -58,8 +60,8 @@ module.exports = {
   },
   addFriend(req, res) {
     User.findOneAndUpdate(
-      { _id: req.params.userId },
-      { $addToSet: { friends: req.params.friendsId } },
+      { id: req.params.userId },
+      { $push: { friends: req.params.friendsId} },
       { runValidators: true, new: true }
     )
       .then((user) =>
@@ -72,7 +74,7 @@ module.exports = {
   
   removeFriend(req, res) {
     User.findOneAndUpdate(
-      { _id: req.params.userId },
+      { id: req.params.userId },
       { $pull: {friends: req.params.friendsId } },
       { runValidators: true, new: true }
     )
